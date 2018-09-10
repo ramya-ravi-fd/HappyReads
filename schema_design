@@ -1,0 +1,98 @@
+users
+  id
+  name
+  email
+  password_digest
+  about_me
+  timestamps
+
+authors
+  id
+  author_name
+  timestamps
+
+genre
+  id
+  name
+  timestamps
+
+books
+  title
+  author_id
+  synopsis
+  description
+  number_of_pages
+  published_date
+  isbn
+  genre_id
+  timestamps
+
+shelve
+  id
+  user_id
+  default_shelve
+  shelve_name
+  timestamps
+
+user_book
+  book_id
+  user_id
+  notes
+  started_date
+  read_date
+  rating
+
+  timestamps
+
+book_shelve
+  id
+  shelve_id
+  user_id
+  book_id
+
+
+activity
+  id
+  user_id
+  book_id
+  activity
+  timestamps
+
+review
+  id
+  user_id
+  book_id
+  body
+  likes
+  timestamps
+
+comment
+  id
+  review_id
+  user_id
+  body
+  timestamps
+
+
+Features:
+
+User        => sign-up, sign-in, sign-out
+
+Home page   => book search, display books
+
+Books       => display all added books along with various user_book specific details
+               allow users to create shelves
+               add books to shelves
+
+Book Details => book details
+                 user activity that is related to specific book
+                 add review comments
+                 rate the book
+                 view all reviews related to this book
+                 comment against reviews
+
+//People Page => view all users
+
+//People Details => view specific details of people
+
+lhm

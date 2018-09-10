@@ -1,0 +1,44 @@
+<script>
+$( document ).ready(function() {
+toggle_active()
+});
+function toggle_active(){
+  $('#sidePane >a').removeClass('active')
+  $('#userBookPane').addClass("active")
+}
+
+</script>
+<h4> My Books </h4>
+
+<div class="fnt0">
+<table class="fnt14 table">
+    <thead>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Started Date</th>
+      <th>Read Date</th>
+      <th>Rating</th>
+      <th>Added Date</th>
+      <th>Shelve </th>
+      <th></th>
+    </thead>
+    <tbody>
+      <div class="fnt0">
+      <%= @user.books.each { |b| %>
+        <tr>
+        <% @user_book = b.user_books.where("book_id=?",b.id).first %>
+        <td> <%=b.title%></td>
+        <td> <%=b.author.author_name %> </td>
+        <td> <%=@user_book.started_date %> </td>
+        <td> <%=@user_book.read_date %> </td>
+        <td> <%=@user_book.rating %> </td>
+        <td> <%=@user_book.created_at %> </td>
+        <td> <%=get_shelves_name(b) %></td>
+        <td> <%=link_to "edit" , edit_user_user_book_path(@user_book.user_id,@user_book.book_id),reload:true %></td>
+        <td> <%=link_to "remove" , user_user_book_path(@user_book.user_id,@user_book.book_id),method:'delete',reload:true %></td>
+      </tr>
+      <% } %>
+    </div>
+    </tbody>
+</table>
+</div>

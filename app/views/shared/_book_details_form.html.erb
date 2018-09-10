@@ -1,0 +1,11 @@
+<div class="row">
+<span class="cols-sm-4 padding-10"><%= image_tag @book.image_url ,height:200,width:200%>
+</span>
+<span class="cols-sm-8 padding-10 details">
+<div class="fnt-bolder"><%=@book.title%></div>
+<div style="font-size:18px">(by <%=@book.author.author_name%> )<div>
+<div>
+    <div><%= @book.synopsis %></div>
+<div>
+</span>
+</div>

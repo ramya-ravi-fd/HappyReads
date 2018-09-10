@@ -1,0 +1,35 @@
+<script>
+$( document ).ready(function() {
+toggle_active()
+});
+function toggle_active(){
+  $('#sidePane >a').removeClass('active')
+  $('#bookPane').addClass("active")
+}
+</script>
+<h4> Add Books </h4>
+
+<%= form_for(:book, url: '../books') do |f|%>
+  <%= f.label :title ,class: "form-label"%>
+  <%= f.text_field :title ,class:"form-control width50" %>
+
+  <%= f.label :isbn ,class:"form-label"%>
+  <%= f.text_field :isbn ,class:"form-control width50"%>
+  <br/>
+  <%= f.label :AuthorName ,'Author Name',class: "form-label" %>
+  <%= f.collection_select  :author_id ,Author.all, :id,:author_name, prompt:true,class:'form-control'%>
+
+  <%= f.label :GenreName ,'Genre',class: "form-label" %>
+  <%= f.collection_select :genre_id ,Genre.all, :id,:name, prompt:true%>
+  <br/>
+
+  <%= f.label :Synopsis ,'Synopsis' ,class:"form-label"%>
+  <%= f.text_area :synopsis ,class:"form-control width50"%>
+
+  <%= f.label :description ,'Description' ,class:"form-label"%>
+  <%= f.text_area :description ,class:"form-control width50"%>
+ <%= f.text_field :image_url ,class:"form-control width50" ,value:"books.jpg"%>
+  <br/>
+  <%= f.submit 'ADD' ,class:"form-group btn btn-default" %>
+
+<% end %>

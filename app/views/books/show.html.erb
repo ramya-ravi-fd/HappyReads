@@ -1,0 +1,15 @@
+<div>
+  <%= render 'shared/book_details_form'%>
+</div>
+<br/>
+<div>
+  <%= form_for :user_book, url:'../createUserBook'  do |f| %>
+  <%= hidden_field_tag  :book_id, params[:id] %>
+  <%= f.submit 'Add MyBooks' ,class:"btn btn-primary"%>
+  <% end %>
+</div>
+<br/>
+<hr/>
+<div>
+<%= render ('shared/reviews_details') %>
+</div>

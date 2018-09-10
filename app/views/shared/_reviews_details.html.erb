@@ -1,0 +1,83 @@
+
+<h6> Reviews </h6>
+<% if @book.reviews.where("user_id=?",current_user.id).count < 1 %>
+  <%= form_for :reviewParams, url:'/reviews'  do |f| %>
+    <%= hidden_field_tag  :book_id, params[:id] %>
+    <table>
+      <tr>
+          <td><%= f.text_area :body ,class:"form-control margin-10" %></td>
+          <td><%= f.submit 'add',class: "btn btn-default margin-10" %><td>
+      </tr>
+    </table>
+  <% end %>
+<% end%>
+<% @book.reviews.each do |review| %>
+
+    <% value = review.body unless review.nil? %>
+    <div >
+        <%=review.user.name%> added
+        <span class="timestamp">
+            Added <%= !review.created_at.nil? && time_ago_in_words(review.created_at) %> ago.
+            <% if !review.nil? && review.user_id == current_user.id%>
+              <%= link_to 'delete review',review,method:'delete' ,class: "btn btn-default margin-10"%>
+            <% end %>
+        </span>
+    </div>
+    <%= form_for :reviewParams, url:'/reviews'  do |f| %>
+      <%= hidden_field_tag  :book_id, params[:id] %>
+      <table>
+        <tr>
+            <td><%= f.text_area :body ,value:value,class:"form-control margin-10 reviewTextArea" %></td>
+            <td>
+              <% if review.user_id == current_user.id %>
+                <%= f.submit 'add',class: "btn btn-default margin-10" %>
+              <% end %>
+            <td>
+              <td>
+
+              </td>
+        </tr>
+      </table>
+
+    <% end %>
+    <br/>
+    <% if !review.nil? %>
+    <div class="commentsDiv">
+      <h6> Comments </h6>
+      <table class="table">
+          <tbody>
+            <% review.comments.each do |c| %>
+              <tr>
+                <td> <%= c.body %>  by <u><%=c.user.name %></u>
+                  <span class="timestamp">
+                      Added <%= !c.created_at.nil? && time_ago_in_words(c.created_at) %> ago.
+                      <% if c.user_id == current_user.id %>
+                        <%= link_to 'delete comment',c,method:'delete',class_name:"btn btn-default margin-10"%>
+                      <% end %>
+                  </span>
+                </td>
+
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+      <hr/>
+      <%= form_for :commentsParams, url:'/comments'  do |f| %>
+        <%= hidden_field_tag  :review_id, review.id %>
+        <%= hidden_field_tag  :book_id, review.book_id %>
+        <table>
+          <tr>
+              <td>
+                <%= f.text_area :body ,class_name:"form-control margin-10" %>
+              </td>
+              <td>
+                <%= f.submit 'add comment' ,class: "btn btn-default margin-10" %>
+              </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+    <hr class="hrReview"/>
+    <% end %>
+
+<% end %>

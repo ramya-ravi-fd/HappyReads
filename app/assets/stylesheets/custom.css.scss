@@ -1,0 +1,197 @@
+
+.sidepane{
+  height: 100%;
+  width: 80px;
+  position: fixed;;
+  z-index: 1;
+  top: 60px;
+  left: 0;
+  background-color: #c5cddb;
+  overflow-x: hidden;
+  padding-top: 20px;
+
+}
+
+.sidepane a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+}
+
+.sidepane a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+  margin-left: 90px;
+  margin-top: 10px;
+  margin-bottom: 0px;
+  bottom: 0;
+  padding: 60px 10px;
+  height: 100%;
+  background-color: rgba(235, 235, 235, 0.7);
+  font-family: serif;
+}
+.body{
+  background-color: rgba(235, 235, 235, 0.7);
+  font-family: serif;
+}
+
+.icon-bar {
+    width: 80px;
+    background-color: #c5cddb;
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 25px;
+}
+
+.icon-bar a:hover {
+    background-color: rgba(85, 85, 85,0.52 );
+}
+
+.active {
+    background-color:#414356;
+}
+
+.topnav {
+    background-color:     #b1b8c5;
+    overflow: hidden;
+}
+
+.topnav a {
+    float: right;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: blue;
+}
+
+
+.topnav a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.search{
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.image-grid{
+  div {
+  font-size: 0;
+}
+
+a {
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 8px;
+  width: calc(25% - 4px);
+  margin-right: 8px;
+}
+.book-card{
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 8px;
+  width: calc(25% - 4px);
+  margin-right: 8px;
+}
+
+a:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+div.book-card:nth-of-type(2n) {
+  margin-right: 0;
+}
+
+image-ht {
+  height: 20px;
+}
+}
+
+.inline{
+  display: inline;
+}
+.fnt14{
+  font-size: 14px!important;
+}
+.fnt12{
+  font-size: 12px!important;
+}
+.fnt-bolder{
+  font-size: 2.5rem;
+  font-weight: bolder;
+
+}
+
+.width50{
+  width: 50%;
+}
+
+.fnt0
+{
+  font-size: 0;
+}
+
+.padding-10{
+  padding: 10px 10px;
+}
+
+.center{
+  text-align: -webkit-center;
+}
+.margin-10{
+  margin-left: 10px;margin-right: 10px;
+}
+
+h4{
+  text-decoration: underline;
+text-transform: uppercase;
+}
+.timestamp {
+  color: rgba(193, 166, 31, 0.95);
+}
+
+.commentsDiv{
+  margin-left: 10%;
+}
+
+.reviewTextArea{
+  border: 0px;
+  background-color: transparent;
+}
+
+.hrReview{
+  height: 4px;
+  background-color: antiquewhite;
+}
+
+.details{
+  width: 80%;
+  padding-right: 10%;
+}
+
+button{
+  background-color: #bfc6d4;
+  border-color: #8e939e;
+  color: grey;
+  border-color: #8e939e;
+}

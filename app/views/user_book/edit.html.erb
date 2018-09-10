@@ -1,0 +1,72 @@
+<script>
+$( document ).ready(function() {
+toggle_active()
+});
+function toggle_active(){
+  $('#sidePane >a').removeClass('active')
+  $('#userBookPane').addClass("active")
+}
+</script>
+
+<%= render 'shared/book_details_form'%>
+<%= form_for @user_book ,url: user_user_book_path(@user.id,@book.id) ,method:'put' do |f| %>
+  <div class="form-inline">
+    <div class="form-group">
+      <%= f.label :notes,class:"form-label margin-10" %>:
+      <%= f.text_area :notes ,value:@user_book.notes ,class:"form-control width50 margin-10"%>
+      <%= button_tag(type: "submit", class: "btn btn-default margin-10") do %>
+         <i class="fa fa-sticky-note-o"></i>Add
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<br/>
+
+<%= form_for @user_book,url: user_user_book_path(@user.id,@book.id) ,method:'put' do |f| %>
+  <div class="form-inline">
+    <div class="form-group">
+    <%= f.label :started_date,'Started Date:  ' ,class:"form-label margin-10"%>
+    <%= f.date_select :started_date ,value:@user_book.started_date,class:"form-control width50 margin-10"%>
+
+    <%= f.label :read_date,'Read Date:  ' ,class:"form-label margin-10" %>
+    <%= f.date_select :read_date,value:@user_book.read_date,class:"form-control width50 margin-10" %>
+
+    <%= f.submit 'Update' ,class:'margin-10' %>
+    </div>
+  </div>
+<% end %>
+<br/>
+
+<%= form_for @user_book,remote:true,url: user_user_book_path(@user.id,@book.id) ,method:'put' do |f| %>
+  <div class="form-inline">
+    <div class="form-group">
+    <%= f.label :rating ,class:"form-label margin-10"%>
+    <%= f.text_field :rating ,value:@user_book.rating,class:"form-control width50 margin-10"%>
+      <%= button_tag(type: "submit", class: "btn btn-default margin-10") do %>
+         <i class="fa fa-star-o"></i>Rate
+    <% end %>
+    </div>
+  </div>
+<% end %>
+<br/>
+
+<%= form_for :shelve_record,remote:true,url:user_user_book_path(@user.id,@book.id) ,method:'put' do |f| %>
+<%= f.collection_select :shelve_id, Shelve.all,:id,:shelve_nam,prompt: true%>
+<%= f.submit 'add' %>
+<% end %>
+<br/>
+<br/>
+<div>
+<h6> Activity </h6>
+<ul>
+<% @book.activities.each do |b|%>
+<li>
+<%= b.activity %> <span class="timestamp"> <%=time_ago_in_words(b.created_at)%></span>
+</li>
+<% end %>
+</ul>
+</div>
+
+<br/><hr/>
+<br/>
+<%= render ('shared/reviews_details') %>

@@ -1,0 +1,31 @@
+<h4>Home Page</h4>
+<div class="search">
+  <%= form_for(:book,url:'home',method: 'get') do |b| %>
+    <div class="input-group">
+      <%= b.text_field :title ,value: @search,class:'form-control inline'%>
+      <span class="input-group-btn">
+        <%= b.submit :'Search', class:'btn btn-default inline'%>
+      </span>
+    </div>
+  <%end%>
+</div>
+<div class="image-grid">
+  <div>
+    <%= @books.each do |bk| %>
+      <div class="book-card">
+        <div class="card">
+          <div class="card-body">
+          <%= image_tag  bk.image_url  ,class:"card-img-top"%>
+            <div class="card-title fnt14">
+              <b><%= link_to bk.title, bk%>(<%= bk.author.author_name%>)</b>
+            </div>
+            <div class="card-title fnt12">
+
+              <%= bk.synopsis %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
