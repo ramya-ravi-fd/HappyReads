@@ -2,13 +2,13 @@ class BooksController < ApplicationController
 
   before_action :authenticate
   skip_before_action :verify_authenticity_token
-  
+
   def index
   end
 
   def show
     @book = Book.find(params[:id]);
-    @user_id = session[:user_id]
+    @user_id = current_user.id
   end
 
   def new

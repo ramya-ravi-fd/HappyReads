@@ -24,7 +24,6 @@ class Book < ApplicationRecord
   has_many :book_shelves,class_name: 'BookShelve',dependent: :destroy
   has_many :shelves ,through: :book_shelves ,source: :user,class_name: 'Shelve',dependent: :destroy
 
-  has_many :user_bs ,class_name: "UserBook",dependent: :destroy
   has_many :user_books,dependent: :destroy
   has_many :users ,through: :user_books,dependent: :destroy
 

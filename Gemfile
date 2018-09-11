@@ -42,6 +42,8 @@ gem 'bootstrap-will_paginate', '>0.0.6'
 
 gem 'omniauth-google-oauth2'
 
+gem 'authlogic', '4.3'
+gem 'sidekiq'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -1,7 +1,7 @@
 class CommentsController < ApiController
-  
+
   def create
-    @user = User.find(session[:user_id])
+    @user =  current_user
     if !@user.nil?
       @comment = @user.comments.create(review_id:params[:review_id],book_id:params[:book_id]);
       @comment.body= commentsParams["body"];

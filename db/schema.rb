@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_063711) do
+ActiveRecord::Schema.define(version: 2018_09_11_091638) do
 
   create_table "activities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -71,6 +71,15 @@ ActiveRecord::Schema.define(version: 2018_09_10_063711) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sessions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id"
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
   create_table "shelves", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
     t.string "shelve_nam"
@@ -96,6 +105,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_063711) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "about_me"
+    t.string "persistence_token"
+    t.string "crypted_password"
+    t.string "password_salt"
+    t.index ["persistence_token"], name: "index_users_on_persistence_token", unique: true
   end
 
 end

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate
+
   skip_before_action :verify_authenticity_token
 
   def index
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     if(@user.save)
       redirect_to @user
     else
+    puts  @user.errors.full_messages
       render 'new'
     end
   end
@@ -25,6 +26,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.fetch(:user,{}).permit(:name,:email,:password,:password_confirmation)
+    params.fetch(:user,{}).permit(:name,:email,:password)
   end
 end

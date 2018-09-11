@@ -1,4 +1,4 @@
-class UserBookController < ApplicationController
+class UserBooksController < ApplicationController
 
   before_action :authenticate
   skip_before_action :verify_authenticity_token
@@ -11,9 +11,9 @@ class UserBookController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id]);
+    @user = User.find(params[:user_id])
     if !@user.nil?
-      @user_book = @user.user_books.where("book_id=?",params[:id]).first;
+      @user_book = @user.user_books.where("book_id=?",params[:id]).first
       if !@user_book.nil?
         @book = @user.books.find(@user_book.book_id)
         @book_shelve = @user.book_shelves.where("book_id = ?",@user_book.book.id)
@@ -42,10 +42,12 @@ class UserBookController < ApplicationController
   end
 
   def create
-    @user = User.find(session[:user_id])
+    puts  UserSession.find.user
+    @user =  current_user
     if !@user.nil?
       @user_book = @user.user_books.find_or_create_by(book_id:params[:book_id]);
       flash[:success] = "Added to My Book List"
+      UserMailer.activity_mail(@user,@user_book.book).deliver_later(wait: 1.minute)
       redirect_to edit_user_user_book_path(@user,@user_book.book_id)
     end
   end

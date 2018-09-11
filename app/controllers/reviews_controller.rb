@@ -4,7 +4,7 @@ class ReviewsController < ApiController
   end
 
   def create
-    @user = User.find(session[:user_id])
+    @user =  current_user
     if !@user.nil?
       @review = @user.reviews.find_or_create_by(book_id:params[:book_id]);
       @review.body= reviewParams["body"];
