@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
 
  def authenticate
    redirect_to :signin unless user_signed_in?
+
+   
  end
 
  def current_user
